@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Git pull') {
             steps {
-                git 'https://github.com/AKeerthisree/Calculator'
+                git 'https://github.com/coder1356/CalculatorRepo.git'
             }
         }
         stage('Maven Build') {
@@ -19,7 +19,7 @@ pipeline {
         stage('Docker Build to Image') {
             steps {
                 script{
-                    imageName=docker.build "keerthisree/calculator"
+                    imageName=docker.build "anish8505/calcdocker"
                 }
             }
         }
@@ -31,13 +31,6 @@ pipeline {
                         imageName.push()
                     }
                 }
-            }
-        }
-        stage('Ansible Pull Docker Image') {
-            steps {
-                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'deploy-docker/inventory',
-                 playbook: 'deploy-docker/deploy-image.yml', sudoUser: null
-
             }
         }
     }
