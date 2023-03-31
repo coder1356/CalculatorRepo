@@ -1,2 +1,2 @@
 # CalculatorRepo
-calculator
+calculators
